@@ -1,0 +1,23 @@
+<h1><%= @the_user.username %></h1>
+
+<form action="/modify_user/<%= @the_user.username %>" method="post">
+  <dl>
+    <dt>
+      ID
+    </dt>
+    <dd>
+        <%= @the_user.id %>
+    </dd>
+
+    <dt>
+      <label for="username">Username</label>
+    </dt>
+    <dd>
+      <input type="text" id="username" name="query_user_name" value="<%= @the_user.username %>"/>
+
+      <button> 
+        Update user
+      </button>
+    </dd>
+  <dl>
+</form>
