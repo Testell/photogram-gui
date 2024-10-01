@@ -1,0 +1,54 @@
+<h1>Photo details</h1>
+
+<form action="/modify_photo/<%= @the_photo.id %>" method="post">
+  <dl>
+    <dt>
+      Image
+    </dt>
+    <dd>
+        <img src="<%= @the_photo.image %>">
+    </dd>
+    <dt>
+      Caption
+    </dt>
+    <dd>
+        <%= @the_photo.caption %>
+    </dd>
+     <dt>
+      Owner
+    </dt>
+    <dd>
+        <%= @the_photo.poster.username %>
+    </dd>
+     <dt>
+      Posted
+    </dt>
+    <dd>
+        <%= @the_photo.created_at %>
+    </dd>
+    <dt>
+      <label for="image">Image</label>
+    </dt>
+    <dd>
+      <input type="text" id="image" name="query_image" value="<%= @the_photo.image %>"/>
+    </dd>
+    <dt>
+      <label for="caption">Caption</label>
+    </dt>
+    <dd>
+      <textarea type="text" id="caption" name="query_caption" placeholder="<%= @the_photo.caption %>"></textarea>
+
+      <button> 
+        Update photo
+      </button>
+    </dd>
+    <dt>
+      Delete photo
+    </dt>
+    <dd>
+      <a href="/delete_photo/<%= @the_photo.id %>"> 
+        Delete this photo
+      </a>
+    </dd>
+  <dl>
+</form>

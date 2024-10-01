@@ -39,9 +39,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     the_id = params.fetch("path_id")
-    @the_user = User.find("the_id")
+    @the_user = User.find(the_id)
 
     @the_user.destroy
 

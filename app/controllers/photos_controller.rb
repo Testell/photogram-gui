@@ -8,9 +8,9 @@ class PhotosController < ApplicationController
 
   def show
     the_id = params.fetch("path_id")
-    @the_photo = Photo.find("the_id")
+    @the_photo = Photo.find(the_id)
 
-    render({ :template => "photo_templates/index"})
+    render({ :template => "photo_templates/show"})
   end
 
   def create
@@ -25,6 +25,30 @@ class PhotosController < ApplicationController
     else
       redirect_to("/photos", :notice => "Photo unsuccesfully created ")
     end
+  end
+
+  def update
+    the_id = params.fetch(:path_id)
+    @the_photo = Photo.find(the_id)
+
+    @the_photo.image = params.fetch("query_image")
+    @the_photo.caption = params.fetch("query_caption")
+    
+    if @the_photo.valid?
+      @the_photo.save
+      redirect_to("/photos/#{@the_photo.id}", notice => "Photo updated successfully")
+    else
+      redirect_to("/photos/#{@the_photo.id}", notice => "Photo failed to update successfully")
+    end
+  end
+
+  def destroy
+    the_id = params.fetch("path_id")
+    @the_photo = Photo.find(the_id)
+
+    @the_photo.destroy
+
+    redirect_to("/photos", :notice => "Photo succesfully deleted")
   end
 
 end
